@@ -1,11 +1,12 @@
 import csv
 import pandas as pd
 
+
 big_mac_file = './big-mac-full-index.csv'
 df = pd.read_csv(big_mac_file)
+df['iso_a3'] = df['iso_a3'].str.lower()
 
 def get_big_mac_price_by_year(year, country_code):
-    country_code = country_code.upper()
     query_text = f"(date >= '{year}-01-01' and date <= '{year}-12-31' and iso_a3 == '{country_code}')"
     df_result = df.query(query_text)
     mean_dollar_value = df_result['dollar_price'].mean()
@@ -13,7 +14,6 @@ def get_big_mac_price_by_year(year, country_code):
     return rounded_mean
 
 def get_big_mac_price_by_country(country_code):
-    country_code = country_code.upper()
     query_text = f"(iso_a3 == '{country_code}')"
     df_result = df.query(query_text)
     mean_dollar_value = df_result['dollar_price'].mean()
