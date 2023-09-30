@@ -25,7 +25,7 @@ def get_the_cheapest_big_mac_price_by_year(year):
     df_result = df.query(query_text)
     index_min_value = df_result['dollar_price'].idxmin()
     min_value = df_result.loc[index_min_value]
-    rounded_min_value = f"{min_value['name']}({min_value['iso_a3']}): {round(min_value['dollar_price'],2)}"
+    rounded_min_value = f"{min_value['name']}({min_value['iso_a3']}): ${round(min_value['dollar_price'],2)}"
     return rounded_min_value
 
 def get_the_most_expensive_big_mac_price_by_year(year):
@@ -33,12 +33,12 @@ def get_the_most_expensive_big_mac_price_by_year(year):
     df_result = df.query(query_text)
     index_max_value = df_result['dollar_price'].idxmax()
     max_value = df_result.loc[index_max_value]
-    rounded_max_value = f"{max_value['name']}({max_value['iso_a3']}): {round(max_value['dollar_price'],2)}"
+    rounded_max_value = f"{max_value['name']}({max_value['iso_a3']}): ${round(max_value['dollar_price'],2)}"
     return rounded_max_value
 
 if __name__ == "__main__":
-    year = 2006
-    country_code = 'can'
+    year = 2012
+    country_code = 'hkg'
     print(get_big_mac_price_by_year(year, country_code))
     print(get_big_mac_price_by_country(country_code))
     print(get_the_cheapest_big_mac_price_by_year(year))
